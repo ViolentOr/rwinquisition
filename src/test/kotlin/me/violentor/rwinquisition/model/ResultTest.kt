@@ -5,18 +5,11 @@ import io.kotlintest.specs.StringSpec
 import me.violentor.rwinquisition.model.result.ConverterImpl
 import me.violentor.rwinquisition.model.result.Result
 
-//    @Test
-//    fun objectConvertsToJson(){
-//        val resultObject: Result = ConverterImpl.fromJsonString(resultJson)
-//        val resultString: String = ConverterImpl.toJsonString(resultObject)
-//
-//        assertThat(resultString).contains("\"name\":\"cis-appleosx10.11-level2\"")
-//    }
-
 class ResultModelTests: StringSpec(){
 
     val resultJson = this::class.java.classLoader.getResource("mac.json").readText()
     val result: Result = ConverterImpl.fromJsonString(resultJson)
+    val reverseResult: String = ConverterImpl.toJsonString(result)
 
     init {
         "Result version should be 2.0.32" {
@@ -147,6 +140,14 @@ class ResultModelTests: StringSpec(){
                     "xccdf_org.cisecurity.benchmarks_rule_7.11_App_Store_Password_Settings",
                     "xccdf_org.cisecurity.benchmarks_rule_8.1_Password_Policy_Plist_generated_through_OS_X_Server",
                     "xccdf_org.cisecurity.benchmarks_rule_8.2_Password_Policy_Plist_from_man_page"))
+        }
+
+        "reverse convertion should go correctly too" {
+            reverseResult.toLowerCase() should {
+                startWith("{\"platform\":{\"name\":\"mac_os_x\"")
+                include("\"start_time\":\"2018-03-08t18:55:50+03:00\"")
+                endWith("\"statistics\":{\"duration\":57.447338},\"version\":\"2.0.32\"}")
+            }
         }
     }
 }
