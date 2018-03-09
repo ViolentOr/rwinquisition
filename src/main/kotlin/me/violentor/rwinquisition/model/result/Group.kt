@@ -8,5 +8,5 @@ class Group {
     var id: String? = null
     @get:JsonProperty("controls")
     @set:JsonProperty("controls")
-    var controls: Array<String>? = null
+    var controls: List<String>? = null
 }
