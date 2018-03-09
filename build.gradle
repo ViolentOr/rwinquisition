@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlinVersion = '1.2.20'
+        kotlinVersion = '1.2.30'
         springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
@@ -10,6 +10,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        //todo: update to 2.9.5 when released
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.8.11")
     }
 }
 
