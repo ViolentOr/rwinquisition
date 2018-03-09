@@ -2,6 +2,7 @@ buildscript {
     ext {
         kotlinVersion = '1.2.30'
         springBootVersion = '2.0.0.RELEASE'
+        jacksonVersion = '2.8.11'
     }
     repositories {
         mavenCentral()
@@ -11,7 +12,8 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
         //todo: update to 2.9.5 when released. due to https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-32111
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.8.11")
+        classpath("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
     }
 }
 
@@ -52,7 +54,8 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     //todo: update to 2.9.5 when released. due to https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-32111
-    compile("com.fasterxml.jackson.core:jackson-databind:2.8.11")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
