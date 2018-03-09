@@ -37,7 +37,7 @@ object ConverterImpl : Converter {
 
     override fun instantiateMapper() {
         val mapper = ObjectMapper()
-        reader = mapper.reader(Result::class.java)
+        reader = mapper.readerFor(Result::class.java)
         writer = mapper.writerFor(Result::class.java)
     }
 }
