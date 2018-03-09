@@ -1,0 +1,13 @@
+# IDE
+.idea/*
+*.iml
+
+# Build Tools
+.gradle/*
+
+# Artifacts
+build/*
+out/*
+
+# OS trash
+*.DS_STORE
