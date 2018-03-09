@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.server.*
 
 
 @Configuration
-class GreetingRouter(private val serviceHandler: ServiceHandler) {
+class ServiceRouter(private val serviceHandler: ServiceHandler) {
 
     @Bean
     fun apiServiceRouter() = router {
