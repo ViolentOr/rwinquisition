@@ -32,14 +32,14 @@ class Profile {
     var copyrightEmail: String? = null
     @get:JsonProperty("supports")
     @set:JsonProperty("supports")
-    var supports: Array<Any>? = null
+    var supports: List<Any>? = null
     @get:JsonProperty("attributes")
     @set:JsonProperty("attributes")
-    var attributes: Array<Any>? = null
+    var attributes: List<Any>? = null
     @get:JsonProperty("groups")
     @set:JsonProperty("groups")
-    var groups: Array<Group>? = null
+    var groups: List<Group>? = null
     @get:JsonProperty("controls")
     @set:JsonProperty("controls")
-    var controls: Array<Control>? = null
+    var controls: List<Control>? = null
 }
