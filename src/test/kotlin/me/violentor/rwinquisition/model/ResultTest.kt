@@ -2,9 +2,8 @@ package me.violentor.rwinquisition.model
 
 import me.violentor.rwinquisition.model.result.ConverterImpl
 import me.violentor.rwinquisition.model.result.Result
-import me.violentor.rwinquisition.model.result.Status
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.assertj.core.api.Assertions.*
 
 
 class ResultJsonParserTest{
