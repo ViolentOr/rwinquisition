@@ -1,9 +1,14 @@
 package me.violentor.rwinquisition.model
 
 import io.kotlintest.matchers.*
+import io.kotlintest.properties.forAll
+import io.kotlintest.properties.headers
+import io.kotlintest.properties.row
+import io.kotlintest.properties.table
 import io.kotlintest.specs.StringSpec
 import me.violentor.rwinquisition.model.result.ConverterImpl
 import me.violentor.rwinquisition.model.result.Result
+import me.violentor.rwinquisition.model.result.Status
 
 class ResultModelTests: StringSpec(){
 
@@ -142,11 +147,26 @@ class ResultModelTests: StringSpec(){
                     "xccdf_org.cisecurity.benchmarks_rule_8.2_Password_Policy_Plist_from_man_page"))
         }
 
+        "Tests can be FAILED or PASSED"{
+            val myTable = table(
+                    headers("i", "status", "success", "message"),
+                    row(0, Status.PASSED, true, ""),
+                    row(1, Status.FAILED, false, "expected \"\" to match /1/\nDiff:\n@@ -1,2 +1,2 @@\n-/1/\n+\"\"\n")
+            )
+
+            forAll(myTable) { id:Int, status:Status, success:Boolean, message:String ->
+                result.profiles!![0].controls!![id].results!![0].status shouldBe status
+                result.profiles!![0].controls!![id].isSuccessfull() shouldBe success
+                result.profiles!![0].controls!![id].results!![0].message shouldBe if(message == "") null else message
+            }
+        }
+
         "reverse convertion should go correctly too" {
             reverseResult.toLowerCase() should {
                 startWith("{\"platform\":{\"name\":\"mac_os_x\"")
                 include("\"start_time\":\"2018-03-08t18:55:50+03:00\"")
                 endWith("\"statistics\":{\"duration\":57.447338},\"version\":\"2.0.32\"}")
+                haveLength(219132)
             }
         }
     }
