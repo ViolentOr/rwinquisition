@@ -1,5 +1,6 @@
 package me.violentor.rwinquisition.model.result
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class Control {
@@ -29,5 +30,8 @@ class Control {
     var sourceLocation: SourceLocation? = null
     @get:JsonProperty("results")
     @set:JsonProperty("results")
-    var results: Array<ResultElement>? = null
+    var results: List<ResultElement>? = null
+
+    @JsonIgnore
+    fun isSuccessfull() = this.results!![0].status == Status.PASSED
 }
